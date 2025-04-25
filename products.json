@@ -1,0 +1,149 @@
+[
+  {
+    "id": 1,
+    "nombre": "Detergente",
+    "precio": 25.5,
+    "categoria": "Limpieza",
+    "descripcion": "Detergente para ropa, varias marcas y presentaciones."
+  },
+  {
+    "id": 2,
+    "nombre": "Desinfectante",
+    "precio": 30.0,
+    "categoria": "Limpieza",
+    "descripcion": "Desinfectante líquido para superficies."
+  },
+  {
+    "id": 3,
+    "nombre": "Suavizante",
+    "precio": 20.0,
+    "categoria": "Limpieza",
+    "descripcion": "Suavizante para ropa, diferentes fragancias."
+  },
+  {
+    "id": 4,
+    "nombre": "Limpiador Multiusos",
+    "precio": 18.0,
+    "categoria": "Limpieza",
+    "descripcion": "Limpiador para diversas superficies del hogar."
+  },
+  {
+    "id": 5,
+    "nombre": "Manzanas",
+    "precio": 22.0,
+    "categoria": "Perecederos",
+    "descripcion": "Manzanas frescas, variedad Gala."
+  },
+  {
+    "id": 6,
+    "nombre": "Zanahorias",
+    "precio": 15.0,
+    "categoria": "Perecederos",
+    "descripcion": "Zanahorias frescas, bolsa de 1kg."
+  },
+  {
+    "id": 7,
+    "nombre": "Leche Entera",
+    "precio": 28.0,
+    "categoria": "Perecederos",
+    "descripcion": "Leche entera pasteurizada, cartón de 1L."
+  },
+  {
+      "id": 8,
+      "nombre": "Jamón de Pavo",
+      "precio": 45.0,
+      "categoria": "Perecederos",
+      "descripcion": "Jamón de pavo rebanado, paquete de 500g."
+  },
+  {
+    "id": 9,
+    "nombre": "Arroz",
+    "precio": 16.0,
+    "categoria": "Alimentos Secos",
+    "descripcion": "Arroz blanco, grano largo, bolsa de 1kg."
+  },
+  {
+    "id": 10,
+    "nombre": "Frijoles",
+    "precio": 18.0,
+    "categoria": "Alimentos Secos",
+    "descripcion": "Frijoles negros, bolsa de 1kg."
+  },
+  {
+    "id": 11,
+    "nombre": "Pasta",
+    "precio": 12.0,
+    "categoria": "Alimentos Secos",
+    "descripcion": "Pasta de sémola, coditos, paquete de 500g."
+  },
+  {
+    "id": 12,
+    "nombre": "Aceite Vegetal",
+    "precio": 35.0,
+    "categoria": "Alimentos Secos",
+    "descripcion": "Aceite vegetal comestible, botella de 1L."
+  },
+    {
+    "id": 13,
+    "nombre": "Galletas Marías",
+    "precio": 10.0,
+    "categoria": "Alimentos Secos",
+    "descripcion": "Galletas Marías, paquete de 170g."
+  },
+  {
+    "id": 14,
+    "nombre": "Cereal de Maíz",
+    "precio": 40.0,
+    "categoria": "Alimentos Secos",
+    "descripcion": "Cereal de hojuelas de maíz, caja de 500g."
+  },
+  {
+    "id": 15,
+    "nombre": "Refresco de Cola",
+    "precio": 15.0,
+    "categoria": "Bebidas",
+    "descripcion": "Refresco de cola, botella de 2L."
+  },
+  {
+    "id": 16,
+    "nombre": "Jugo de Naranja",
+    "precio": 20.0,
+    "categoria": "Bebidas",
+    "descripcion": "Jugo de naranja, envase de 1L."
+  },
+  {
+    "id": 17,
+    "nombre": "Agua Embotellada",
+    "precio": 8.0,
+    "categoria": "Bebidas",
+    "descripcion": "Agua purificada, botella de 1.5L."
+  },
+  {
+    "id": 18,
+    "nombre": "Bebida Energética",
+    "precio": 25.0,
+    "categoria": "Bebidas",
+    "descripcion": "Bebida energizante, lata de 473ml."
+  },
+  {
+    "id": 19,
+    "nombre": "Sopa de Fideos",
+    "precio": 7.5,
+    "categoria": "Envasados",
+    "descripcion": "Sopa de fideos instantánea, sobre de 85g."
+  },
+  {
+    "id": 20,
+    "nombre": "Salsa de Tomate",
+    "precio": 12.5,
+    "categoria": "Envasados",
+    "descripcion": "Salsa de tomate, lata de 210g."
+  },
+    {
+    "id": 21,
+    "nombre": "Atún en Agua",
+    "precio": 28.0,
+    "categoria": "Envasados",
+    "descripcion": "Atún en agua, lata de 140g."
+  }
+]

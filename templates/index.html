@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Distribuidora Abarrotes del Norte</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const logo = document.querySelector('.logo');
+            if (logo) {
+                logo.addEventListener('click', () => {
+                    window.location.href = '/'; // Redirige a la página de inicio
+                });
+                logo.style.cursor = 'pointer'; // Cambia el cursor para indicar que es clickable
+            }
+        });
+    </script>
+    <style>
+        body {
+            background-color: #004488;
+            color: #f8f9fa;
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .header {
+            background-color: whitesmoke;
+            color: darkblue;
+            padding: 1.5rem 0;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .logo {
+            width: 150px;
+            margin-right: 10px;
+        }
+        .navbar-productos {
+            background-color: whitesmoke;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+        }
+        .navbar-productos .navbar-brand {
+            margin-right: auto;
+        }
+        .navbar-productos .nav-item {
+            margin-right: 10px;
+        }
+        .navbar-productos .nav-link {
+            color: darkblue !important;
+            padding: 0.8rem 1.2rem !important;
+            text-decoration: none;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .navbar-productos .nav-link:hover,
+        .navbar-productos .nav-link.active {
+            color: lightgray !important;
+        }
+        .navbar-productos .nav-link:hover { /* Quita el recuadro azul */
+             background-color: transparent;
+        }
+        .sidebar {
+            background-color: #e9ecef;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+            margin-top: 0;
+            width: 25%;
+            box-sizing: border-box;
+        }
+        .sidebar h4 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+        .form-label {
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        .form-select {
+            margin-bottom: 1rem;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            font-size: 0.9rem;
+            padding: 0.75rem 1.5rem;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        .table {
+            background-color: white;
+            color: #333;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+            margin-bottom: 0;
+        }
+        .table thead {
+            background-color: #0055aa;
+            color: white;
+        }
+        .table th, .table td {
+            padding: 0.75rem;
+            vertical-align: middle;
+            font-size: 0.9rem;
+        }
+        .table th {
+            font-weight: bold;
+        }
+        #mensaje-productos {
+            color: #dc3545;
+            font-weight: bold;
+            margin-top: 1rem;
+            text-align: center;
+            font-size: 1rem;
+        }
+        .container-fluid {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+        .footer {
+            background-color: #e9ecef;
+            color: #333;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+            border-top: 1px solid #ced4da;
+            font-size: 0.8rem;
+            width: 100%;
+            margin-left: 0;
+            flex-shrink: 0;
+        }
+        .product-list-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 100%;
+            flex: 1;
+            margin-bottom: 2rem;
+        }
+        .product-table-container{
+            width: 70%;
+            margin-left: 2rem;
+            display: flex;
+            flex-direction: column;
+        }
+        .navbar-collapse {
+            justify-content: flex-end;
+        }
+        #ordenar-form {
+            width: 100%;
+        }
+        #ordenar-form .form-select {
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-productos">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="{{ url_for('static', filename='logo.png') }}" class="logo" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavProductos" aria-controls="navbarNavProductos" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavProductos">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                     <li class="nav-item">
+                        <a class="nav-link"  href="/">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if not categoria_seleccionada %}active{% endif %}" aria-current="page" href="/home">Todos los Productos</a>
+                    </li>
+                    {% for categoria in categorias %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if categoria_seleccionada == categoria %}active{% endif %}" href="{{ url_for('categoria', nombre_categoria=categoria) }}">{{ categoria }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <form class="d-flex" action="{{ url_for('buscar') }}" method="GET">
+                    <input class="form-control me-2" type="search" name="query" placeholder="Buscar productos..." aria-label="Search" id="buscar-producto">
+                    <button class="btn btn-outline-dark" type="submit">Buscar</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-4">
+        <div class="product-list-container">
+            <div class="sidebar">
+                <h4>Ordenar Productos</h4>
+                <form id="ordenar-form">
+                    <div class="mb-3">
+                        <label for="orden" class="form-label">Ordenar por Precio:</label>
+                        <select class="form-select" id="orden" name="orden">
+                            <option value="asc">Menor a Mayor</option>
+                            <option value="desc">Mayor a Menor</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Ordenar</button>
+                </form>
+            </div>
+            <div class="product-table-container">
+                <h3 class="mb-3 text-center">
+                    {% if categoria_seleccionada %}
+                       {{ categoria_seleccionada }}
+                    {% else %}
+                        Listado de Productos
+                    {% endif %}
+                </h3>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Precio</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-productos">
+                        {% for producto in productos %}
+                        <tr>
+                            <td>{{ producto.id }}</td>
+                            <td>{{ producto.nombre }}</td>
+                            <td>${{ producto.precio }}</td>
+                            <td>{{ producto.descripcion }}</td>
+                        </tr>
+                        {% endfor %}
+                        {% if not productos and mensaje %}
+                        <tr><td colspan="4" id="mensaje-productos">{{ mensaje }}</td></tr>
+                        {% elif not productos %}
+                        <tr><td colspan="4" id="mensaje-productos">No hay productos disponibles.</td></tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const ordenarForm = document.getElementById('ordenar-form');
+
+        ordenarForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const orden = document.getElementById('orden').value;
+            let url = '';
+            const categoriaSeleccionada = "{{ categoria_seleccionada }}";
+
+            if (categoriaSeleccionada) {
+                url = `/categoria/${categoriaSeleccionada}?orden=${orden}`;
+            } else {
+                url = `/buscar?orden=${orden}`;
+            }
+            const buscarInput = document.getElementById('buscar-producto');
+            if (buscarInput.value) {
+                url += `&query=${buscarInput.value}`;
+            }
+            window.location.href = url;
+        });
+    </script>
+</body>
+</html>
