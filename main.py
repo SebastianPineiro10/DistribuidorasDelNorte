@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 # Nombre del archivo JSON
 PRODUCTOS_FILE = 'products.json'
-WELCOME_FILE = 'welcome.html' # Nuevo: nombre del archivo de bienvenida
+WELCOME_FILE = 'welcome.html'
 
 # Función para cargar los productos desde el archivo JSON
 def cargar_productos():
@@ -90,6 +90,61 @@ def agregar_producto():
         return jsonify(nuevo_producto), 201
     except Exception as e:
         return jsonify({"error": f"Error al agregar el producto: {str(e)}"}), 500
+
+@app.route("/api/productos/<int:producto_id>", methods=["PUT"])
+def actualizar_producto(producto_id):
+    """
+    Esta ruta permite actualizar un producto existente por su ID.
+    """
+    producto_actualizado = request.get_json()
+    if not producto_actualizado:
+        return jsonify({"error": "No se proporcionó un producto en el cuerpo de la solicitud."}), 400
+
+    try:
+        # Carga la lista actual de productos
+        productos = cargar_productos()
+
+        # Busca el producto a actualizar por su ID
+        for i, producto in enumerate(productos):
+            if producto["id"] == producto_id:
+                # Actualiza los campos del producto
+                productos[i].update(producto_actualizado)  # Usa update() para modificar solo los campos proporcionados
+
+                # Guarda los productos actualizados en el archivo JSON
+                with open(PRODUCTOS_FILE, 'w', encoding='utf-8') as f:
+                    json.dump(productos, f, ensure_ascii=False, indent=4)
+                return jsonify(productos[i]), 200  # Devuelve el producto actualizado
+        else:
+            return jsonify({"error": "Producto no encontrado"}), 404  # Producto no encontrado
+
+    except Exception as e:
+        return jsonify({"error": f"Error al actualizar el producto: {str(e)}"}), 500
+
+
+@app.route("/api/productos/<int:producto_id>", methods=["DELETE"])
+def eliminar_producto(producto_id):
+    """
+    Esta ruta permite eliminar un producto existente por su ID.
+    """
+    try:
+        # Carga la lista actual de productos
+        productos = cargar_productos()
+
+        # Busca el producto a eliminar por su ID
+        for i, producto in enumerate(productos):
+            if producto["id"] == producto_id:
+                # Elimina el producto de la lista
+                del productos[i]
+
+                # Guarda los productos actualizados en el archivo JSON
+                with open(PRODUCTOS_FILE, 'w', encoding='utf-8') as f:
+                    json.dump(productos, f, ensure_ascii=False, indent=4)
+                return jsonify({"mensaje": "Producto eliminado correctamente"}), 200
+        else:
+            return jsonify({"error": "Producto no encontrado"}), 404  # Producto no encontrado
+
+    except Exception as e:
+        return jsonify({"error": f"Error al eliminar el producto: {str(e)}"}), 500
 
 @app.route("/categoria/<nombre_categoria>")
 def categoria(nombre_categoria):
