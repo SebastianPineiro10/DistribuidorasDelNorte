@@ -1,6 +1,3 @@
-Claro, a continuación te presento una versión profesional y estructurada del archivo `README.md` para tu proyecto **Distribuidoras del Norte**. Este formato sigue las mejores prácticas recomendadas para repositorios en GitHub, lo que facilitará la comprensión y uso de tu proyecto por parte de otros desarrolladores y potenciales empleadores.
-
----
 
 # Distribuidoras del Norte
 
@@ -21,6 +18,9 @@ Aplicación web desarrollada con Flask para la gestión de productos y pedidos d
 ## Descripción
 
 Distribuidoras del Norte es una aplicación web que permite a una empresa distribuidora gestionar su catálogo de productos y los pedidos de sus clientes. La aplicación está construida utilizando el framework Flask y presenta una interfaz sencilla y funcional para facilitar las operaciones diarias de la empresa.
+
+[![Ver aplicación](https://img.shields.io/badge/Ver%20Aplicaci%C3%B3n-en%20Render-blue?style=for-the-badge)](https://distribuidorasdelnorte.onrender.com/home)
+
 
 ## Características
 
